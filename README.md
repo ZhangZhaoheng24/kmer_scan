@@ -1,1 +1,1 @@
-# k-mer
+# scan k-mers count in fastq file 
