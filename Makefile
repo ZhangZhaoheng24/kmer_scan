@@ -1,36 +1,24 @@
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-	CC := g++
-else
-	CC := /usr/local/opt/llvm/bin/clang++
-	LDFLAG := -L/usr/local/opt/llvm/lib
-endif
+CC := g++
 #
 CFLAGS := -std=c++11 -O3 -Wall -fopenmp
 #
 COBJS := scan.o readsdb.o kmerdb.o
 LIBS := -lz
 
-COUNTMER := SCAN
-#GTEST := gtest
+SCAN := scan
 
 %.o: %.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 # all
-all: $(COUNTMER)
+all: $(SCAN)
 
-# countmer
-$(COUNTMER): $(COBJS)
-	$(CC) $(CFLAGS) -o $(COUNTMER) $(COBJS) $(LIBS) $(LDFLAG)
-
-# gtest
-#$(GTEST): $(GOBJS)
-#	$(CC) $(CFLAGS) -o $(GTEST) $(GOBJS) $(LDFLAG)
-
+# scan
+$(SCAN): $(COBJS)
+	$(CC) $(CFLAGS) -o $(SCAN) $(COBJS) $(LIBS) $(LDFLAG)
 # clean
 clean:
-	-rm -f $(COBJS) $(COUNTMER) $(GOBJS) *~
+	-rm -f $(COBJS) $(SCAN) $(GOBJS) *~
 
 .PHONY: all clean
 
