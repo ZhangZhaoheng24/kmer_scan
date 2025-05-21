@@ -56,6 +56,11 @@ void execution(const string &KmerFile, const unsigned int KmerSize,
 }
 
 
-int main(int argc, char* argv[]){
-	execution(argv[1],29,argv[2],argv[3],argv[4]);
-}
+int main(int argc, char* argv[]) {
+    if (argc != 6) {
+        cerr << "Usage: " << argv[0] << " <KmerFile> <KmerSize> <InputFile> <OutReads> <OutKmerFreq>" << endl;
+        return 1;
+    }
+    unsigned int kmerSize = stoi(argv[2]);
+    execution(argv[1], kmerSize, argv[3], argv[4], argv[5]);
+    return 0;
