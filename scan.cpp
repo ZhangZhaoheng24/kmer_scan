@@ -64,3 +64,4 @@ int main(int argc, char* argv[]) {
     unsigned int kmerSize = stoi(argv[2]);
     execution(argv[1], kmerSize, argv[3], argv[4], argv[5]);
     return 0;
+}
